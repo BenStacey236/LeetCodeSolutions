@@ -1,3 +1,5 @@
+# Easy problem
+
 def isAnagram(s: str, t: str) -> bool:
     sSet = set(s)
 
