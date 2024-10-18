@@ -1,23 +1,30 @@
 # Medium Problem
 
-def topKFrequent(nums: list[int], k: int) -> list[int]:
-    numSet = set(nums)
+def topKFrequent1(nums: list[int], k: int) -> list[int]:
+    frequencies = [[] for _ in range(len(nums)+1)]
+    count = {}
 
-    while len(numSet) != k:
-        toRemove = []
-        for item in numSet:
-            if item not in nums:
-                toRemove.append(item)
-            else:
-                nums.remove(item)
-
-        for num in toRemove:
-            numSet.remove(num)
-
-    return list(numSet)
-
+    for num in nums:
+        if num in count:
+            count[num] = count[num] + 1
+        else:
+            count[num] = 1
     
+    for n, count in count.items():
+        frequencies[count].append(n)
+    
+    result = []
+    for freq in reversed(frequencies):
+        for n in freq:
+            result.append(n)
+
+            if len(result) == k: 
+                return result
+
+
+input = [1, 1, 1, 2, 2, 3]
+
 if __name__ == "__main__":
-    print(topKFrequent([5,3,1,1,1,3,73,1], 2))
+    print(topKFrequent1(input, 2))
     
     
