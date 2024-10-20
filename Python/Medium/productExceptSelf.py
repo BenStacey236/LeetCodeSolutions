@@ -1,24 +1,19 @@
 # Medium Problem
 
 def productExceptSelfNoDiv(nums: list[int]) -> list[int]:
-    prefixes = [1]
-    suffixes = []
+    answers = [1] * len(nums)
 
+    prefix = 1
     for i, num in enumerate(nums):
-        posti = len(nums) - i - 1
-        if i != 0:
-            prefixes.append(prefixes[i] * num)
-        else:
-            prefixes.append(num)
+        answers[i] = prefix
+        prefix *= num
 
-        if posti != (len(nums) - 1):
-            suffixes.append(suffixes[i-1] * nums[posti])
-        else:
-            suffixes.append(nums[posti])
+    post = 1
+    for i, num in enumerate(reversed(nums)):
+        answers[len(answers)-i-1] *= post
+        post *= num
 
-    suffixes = [1] + list(reversed(suffixes)) + [1]
-
-    return [prefixes[i-1]*suffixes[i+1] for i in range(1, len(nums)+1)]
+    return answers
 
 
 input = [1,2,3,4]
