@@ -1,4 +1,5 @@
 # Medium Problem
+# Problem 347
 
 def topKFrequent1(nums: list[int], k: int) -> list[int]:
     frequencies = [[] for _ in range(len(nums)+1)]

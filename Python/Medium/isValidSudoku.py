@@ -1,4 +1,5 @@
 # Medium Problem
+# Problem 36
 
 def isValidSudoku(board: list[list[str]]) -> bool:
     for row in board:
