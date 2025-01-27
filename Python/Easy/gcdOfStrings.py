@@ -1,3 +1,6 @@
+# Easy Problem
+# Problem 1071
+
 def gcdOfStrings(str1: str, str2: str) -> str:
     long = str1 if len(str1) > len(str2) else str2
     short = str1 if long == str2 else str2
@@ -8,6 +11,3 @@ def gcdOfStrings(str1: str, str2: str) -> str:
             return divisor
 
     return ""
-
-
-print(gcdOfStrings("TAUXXTAUXXTAUXXTAUXXTAUXX", "TAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXX"))
