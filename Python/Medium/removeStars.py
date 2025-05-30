@@ -1,7 +1,7 @@
 # Medium Problem
 # Problem 2390
 
-def removeStars(s: str) -> str:
+'''def removeStars(s: str) -> str:
     i = 0
 
     while 0 <= i < len(s):
@@ -11,7 +11,20 @@ def removeStars(s: str) -> str:
         else:
             i += 1
 
-    return s
+    return s'''
+
+
+def removeStars(s: str) -> str:
+    output = []
+
+    for char in s:
+        if char == "*":
+            output.pop()
+
+        else:
+            output.append(char)
+
+    return ''.join(output)
 
 
 input = "u*ensso****x*q"
