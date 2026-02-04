@@ -11,23 +11,24 @@ def goodNodes(root: TreeNode) -> int:
     
     goodNodes = 1
 
-    toVisit: list[tuple[TreeNode, list[int]]] = []
+    toVisit: list[tuple[TreeNode, int]] = []
 
-    def dfs(entry: tuple[TreeNode, list[int]]) -> None:
-        node, path = entry
+    def dfs(entry: tuple[TreeNode, int]) -> None:
+        node, maxOnPath = entry
 
         if node.left:
-            toVisit.append((node.left, path + [node.val]))
+            toVisit.append((node.left, max(maxOnPath, node.val)))
 
         if node.right:
-            toVisit.append((node.right, path + [node.val]))
+            toVisit.append((node.right, max(maxOnPath, node.val)))
     
-    dfs((root, []))
+    dfs((root, root.val))
 
     while toVisit:
-        node, path = toVisit.pop()
-        dfs((node, path))
-        if max(path) <= node.val:
+        toExplore = toVisit.pop()
+        dfs(toExplore)
+        node, maxOnPath = toExplore
+        if maxOnPath <= node.val:
             goodNodes += 1
 
     return goodNodes
