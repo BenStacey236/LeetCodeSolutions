@@ -5,15 +5,22 @@ from typing import List
 
 def wordBreak(s: str, wordDict: List[str]) -> bool:
 
+    memo: dict[str, bool] = {}
+
     def match(target: str) -> bool:
-        print(f"T: {target}")
+
+        if target in memo:
+            return memo[target]
 
         if target == "":
             return True
 
         for word in wordDict:
             if target.startswith(word):
-                if match(target[len(word):]):
+                newSearch = target[len(word):]
+                res = match(newSearch)
+                memo[newSearch] = res 
+                if res:
                     return True
             
         return False
