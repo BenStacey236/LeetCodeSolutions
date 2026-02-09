@@ -9,14 +9,25 @@ class ListNode:
         self.next = None
 
 def hasCycle(head: Optional[ListNode]) -> bool:
-    visited: set[ListNode] = set()
+        
+    slow, fast = head, head
 
-    curr = head
-    while curr:
-        if curr in visited:
+    if not head:
+        return False
+
+    started = False
+    while slow and fast:
+
+        if started and slow == fast:
             return True
 
-        visited.add(curr)
-        curr = curr.next
+        if not started:
+            started = True
+        
+        fast = fast.next
+        if not fast:
+            return False
+        fast = fast.next
+        slow = slow.next
 
     return False
