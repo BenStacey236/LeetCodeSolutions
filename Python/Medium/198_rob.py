@@ -5,17 +5,17 @@ from typing import List
 from collections import defaultdict
 
 def rob(nums: List[int]) -> int:
+        
     if len(nums) == 1:
         return nums[0]
 
-    memo = defaultdict(lambda: 0)
-    memo[0] = nums[0]
-    memo[1] = nums[1]
+    skipped = 0
+    prev = nums[0]
 
-    for house in range(2, len(nums)):
-        memo[house] = max(nums[house] + memo[house-2], nums[house] + memo[house-3])
+    for i in range(1, len(nums)):
+        skipped, prev = prev, max(prev, nums[i] + skipped)
 
-    return max(memo[len(nums)-1], memo[len(nums)-2])
+    return prev
 
 
 if __name__ == "__main__":
