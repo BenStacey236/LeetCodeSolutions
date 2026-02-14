@@ -2,25 +2,14 @@
 # Problem 70
 
 def climbStairs(n: int) -> int:
+    
+    prev = 1
+    curr = 1
 
-    memo: dict[int, int] = {}
+    for i in range(2, n + 1):
+        prev, curr = curr, prev + curr
 
-    def combinations(level: int) -> int:
-
-        if level in memo:
-            return memo[level]
-
-        if level == 1:
-            return 1
-
-        if level == 2:
-            return 2
-
-        res = combinations(level-1) + combinations(level-2)
-        memo[level] = res
-        return res
-
-    return combinations(n)
+    return curr
 
 
 if __name__ == "__main__":
