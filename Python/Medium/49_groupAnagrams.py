@@ -1,17 +1,20 @@
 # Medium Problem
 # Problem 49
 
-def groupAnagrams(strs: list[str]) -> list[list[str]]:
-    anagrams = {}
-    
-    for string in strs:
-        sortedStr = ''.join(sorted(string))
-        if sortedStr in anagrams:
-            anagrams[sortedStr].append(string)
-        else:
-            anagrams[sortedStr] = [string]
+from collections import defaultdict
 
-    return [value for value in anagrams.values()]
+def groupAnagrams(strs: list[str]) -> list[list[str]]:
+    groups = defaultdict(list)
+
+    for word in strs:
+        letters = [0] * 26
+        
+        for letter in word:
+            letters[ord(letter)-97] += 1
+
+        groups[tuple(letters)].append(word)
+
+    return list(groups.values())
 
 
 if __name__ == "__main__":
